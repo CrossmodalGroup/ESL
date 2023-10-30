@@ -1,4 +1,4 @@
 # ESL: Enhanced Semantic Similarity Learning Framework for Image-Text Matching
 
 
-Codes and pre-trained models will be organized and released.
+The code will be released before 2023.11.6.
