@@ -1,6 +1,6 @@
 # Enhanced Semantic Similarity Learning Framework for Image-Text Matching
 
-<img src="docs/assets/img/pytorch-logo-dark.png" width="10%"> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+<img src="https://github.com/CrossmodalGroup/ESL/blob/main/lib/pytorch-logo-dark.png" width="10%"> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 Official PyTorch implementation of the paper [Enhanced Semantic Similarity Learning Framework for Image-Text Matching](https://www.researchgate.net/publication/373318149_Enhanced_Semantic_Similarity_Learning_Framework_for_Image-Text_Matching).
 
@@ -19,11 +19,13 @@ Please use the following bib entry to cite this paper if you are using any resou
 
 We referred to the implementations of [GPO](https://github.com/woodfrog/vse_infty/blob/master/README.md) to build up our codebase. 
 
+## Motivation
+<img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="100%">
+Squares denote local dimension elements in a feature. Circles denote the measure-unit, i.e., the minimal basic component used to examine semantic similarity. Compared with (a) existing methods typically default to a static mechanism that only examines the single-dimensional cross-modal correspondence, (b) our key idea is to dynamically capture and learn multi-dimensional enhanced correspondence.  That is, the number of dimensions constituting the measure-units is changed from existing only one to hierarchical multi-levels, enabling their examining information granularity to be enriched and enhanced to promote a more comprehensive semantic similarity learning.
 
 ## Introduction
-
 <img src="https://github.com/CrossmodalGroup/ESL/blob/main/overview.png" width="100%">
-
+In this paper, different from the single-dimensional correspondence with limited semantic expressive capability, we propose a novel enhanced semantic similarity learning (ESL), which generalizes both measure-units and their correspondences into a dynamic learnable framework to examine the multi-dimensional enhanced correspondence between visual and textual features. Specifically, we first devise the intra-modal multi-dimensional aggregators with iterative enhancing mechanism, which dynamically captures new measure-units integrated by hierarchical multi-dimensions, producing diverse semantic combinatorial expressive capabilities to provide richer and discriminative information for similarity examination. Then, we devise the inter-modal enhanced correspondence learning with sparse contribution degrees, which comprehensively and efficiently determines the cross-modal semantic similarity. Extensive experiments verify its superiority in achieving state-of-the-art performance.
 
 ### Image-text Matching Results
 
@@ -60,65 +62,19 @@ The following tables show partial results of image-to-text retrieval on COCO and
 
 ### Environment
 
-We trained and evaluated our models with the following key dependencies:
+We recommended the following dependencies.
 
-- Python 3.7.3 
-
-- Pytorch 1.2.0
-
-- Transformers 2.1.0
-
-
-Run ```pip install -r requirements.txt ``` to install the exactly same dependencies as our experiments. However, we also verified that using the latest Pytorch 1.8.0 and Transformers 4.4.2 can also produce similar results.  
+* Python 3.6
+* [PyTorch](http://pytorch.org/) 1.8.0
+* [NumPy](http://www.numpy.org/) (>1.19.5)
+* [TensorBoard](https://github.com/TeamHG-Memex/tensorboard_logger)
+* The specific required environment can be found [here](https://drive.google.com/file/d/1jLhd1GU6W3YrKeADM5g4qQxJoYt1lXx5/view?usp=sharing)
 
 ### Data
 
-We organize all data used in the experiments in the following manner:
+Download the dataset files. We use the image feature created by SCAN. The vocabulary required by GloVe has been placed in the 'vocab' folder of the project (for Flickr30K and MSCOCO).
 
-```
-data
-├── coco
-│   ├── precomp  # pre-computed BUTD region features for COCO, provided by SCAN
-│   │      ├── train_ids.txt
-│   │      ├── train_caps.txt
-│   │      ├── ......
-│   │
-│   ├── images   # raw coco images
-│   │      ├── train2014
-│   │      └── val2014
-│   │
-│   ├── cxc_annots # annotations for evaluating COCO-trained models on the CxC benchmark
-│   │
-│   └── id_mapping.json  # mapping from coco-id to image's file name
-│   
-│
-├── f30k
-│   ├── precomp  # pre-computed BUTD region features for Flickr30K, provided by SCAN
-│   │      ├── train_ids.txt
-│   │      ├── train_caps.txt
-│   │      ├── ......
-│   │
-│   ├── flickr30k-images   # raw coco images
-│   │      ├── xxx.jpg
-│   │      └── ...
-│   └── id_mapping.json  # mapping from f30k index to image's file name
-│   
-├── weights
-│      └── original_updown_backbone.pth # the BUTD CNN weights
-│
-└── vocab  # vocab files provided by SCAN (only used when the text backbone is BiGRU)
-```
-
-The download links for original COCO/F30K images, precomputed BUTD features, and corresponding vocabularies are from the offical repo of [SCAN](https://github.com/kuanghuei/SCAN#download-data). The ```precomp``` folders contain pre-computed BUTD region features, ```data/coco/images``` contains raw MS-COCO images, and ```data/f30k/flickr30k-images``` contains raw Flickr30K images. 
-
-The ```id_mapping.json``` files are the mapping from image index (ie, the COCO id for COCO images) to corresponding filenames, we generated these mappings to eliminate the need of the ```pycocotools``` package. 
-
-```weights/original_updowmn_backbone.pth``` is the pre-trained ResNet-101 weights from [Bottom-up Attention Model](https://github.com/peteanderson80/bottom-up-attention), we converted the original Caffe weights into Pytorch. Please download it from [this link](https://drive.google.com/file/d/1gNdV1Qx_7yYzkhHrzqbP-bbNkdrKw_w1/view?usp=sharing).
-
-
-The ```data/coco/cxc_annots``` directory contains the necessary data files for running the [Criscrossed Caption (CxC) evaluation](https://github.com/google-research-datasets/Crisscrossed-Captions). Since there is no official evaluation protocol in the CxC repo, we processed their raw data files and generated these data files to implement our own evaluation.  We have verified our implementation by aligning the evaluation results of [the official VSRN model](https://github.com/KunpengLi1994/VSRN) with the ones reported by the [CxC paper](https://arxiv.org/abs/2004.15020) Please download the data files at [this link](https://drive.google.com/drive/folders/1Ikwge0usPrOpN6aoQxsgYQM6-gEuG4SJ?usp=sharing).
-
-Please download all necessary data files and organize them in the above manner, the path to the ```data``` directory will be the argument to the training script as shown below.
+You can download the dataset through Baidu Cloud. Download links are [Flickr30K]( https://pan.baidu.com/s/1Fr_bviuWLcrJ9MiiRn_H2Q) and [MSCOCO]( https://pan.baidu.com/s/1vp3gtQhT7GO0PQACBSnOrQ), the extraction code is: USTC. 
 
 ## Training
 
