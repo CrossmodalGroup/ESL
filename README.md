@@ -22,45 +22,38 @@ We referred to the implementations of [GPO](https://github.com/woodfrog/vse_inft
 
 ## Introduction
 
-<img src="docs/assets/img/overview.png" width="100%">
-
-Illustration of the standard Visual Semantic Embedding (VSE) framework with the proposed pooling-based aggregator, i.e., Generalized
-Pooling Operator (GPO). It is simple and effective, which automatically adapts to the appropriate pooling strategy given different data
-modality and feature extractor, and improves VSE models at negligible extra computation cost.
+<img src="https://github.com/CrossmodalGroup/ESL/blob/main/overview.png" width="100%">
 
 
 ### Image-text Matching Results
 
-The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using BERT as the text backbone**, please check out to [**the ```bigru``` branch**](https://github.com/woodfrog/vse_infty/tree/bigru) for the code and pre-trained models for using BiGRU as the text backbone.
-
-Note that the VSE++ entries in the following tables are the VSE++ model with the specified feature backbones, thus the results are different from the original VSE++ paper.  
+The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using BERT as the text backbone**, please check out to [**the ```CLIP-based``` branch**](https://github.com/woodfrog/vse_infty/tree/bigru) for the code and pre-trained models.
 
 #### Results of 5-fold evaluation on COCO 1K Test Split
 
-| |Visual Backbone|Text Backbone|R1|R5|R1|R5|Link|
-|---|:---:|:---:|---|---|---|---|---|
-|VSE++| BUTD region |BERT-base|67.9|91.9|54.0|85.6| - |
-|VSEInfty | BUTD region |BERT-base|**79.7**|**96.4**|**64.8**|**91.4**|[Here](https://drive.google.com/drive/folders/1pbWTSaTPGymGiOZJCo_eTYJJJry2D-H7?usp=sharing)|
-|VSEInfty | BUTD grid |BERT-base|**80.4**|**96.8**|**66.4**|**92.1**|[Here](https://drive.google.com/drive/folders/13cOrd9WIwMHZCfEl2BB3OGMaqXqNas4W?usp=sharing)|
-|VSEInfty | WSL grid |BERT-base|**84.5**|**98.1**|**72.0**|**93.9**|[Here](https://drive.google.com/drive/folders/1gZF0253awmnj3HK_4Wsupc0hmxyCXN9n?usp=sharing)|
+| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
+|---|:---:|:---:|---|---|---|---|---|---|---|---|
+|ESL-H | BUTD region |BERT-base|**82.5**|**97.4**|**99.0**|**66.2**|**91.9**|**96.7**|**533.5**|[Here](https://drive.google.com/file/d/1NgTLNFGhEt14YgLb3gCkWfBp1gBxvl9w/view?usp=sharing)|
+|ESL-A | BUTD region |BERT-base|**82.2**|**96.9**|**98.9**|**66.5**|**92.1**|**96.7**|**533.4**|[Here](https://drive.google.com/file/d/17jaJm2DSJbF5IuUij9s3c2fupcy4CW8T/view?usp=sharing)|
+
+
+#### Results of 5-fold evaluation on COCO 5K Test Split
+
+| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
+|---|:---:|:---:|---|---|---|---|---|---|---|---|
+|ESL-H | BUTD region |BERT-base|**63.6**|**87.4**|**93.5**|**44.2**|**74.1**|**84.0**|**446.9**|[Here](https://drive.google.com/file/d/1NgTLNFGhEt14YgLb3gCkWfBp1gBxvl9w/view?usp=sharing)|
+|ESL-A | BUTD region |BERT-base|**63.0**|**87.6**|**93.3**|**44.5**|**74.4**|**84.1**|**447.0**|[Here](https://drive.google.com/file/d/17jaJm2DSJbF5IuUij9s3c2fupcy4CW8T/view?usp=sharing)|
+
 
 #### Results on Flickr30K Test Split
 
-| |Visual Backbone|Text Backbone|R1|R5|R1|R5|Link|
-|---|:---:|:---:|---|---|---|---|---|
-|VSE++| BUTD region |BERT-base|63.4|87.2|45.6|76.4|- |
-|VSEInfty | BUTD region |BERT-base|**81.7**|**95.4**|**61.4**|**85.9**|[Here](https://drive.google.com/drive/folders/1Xm4IPQlefQFt550yVg6i9CVp60zGvU8a?usp=sharing)|
-|VSEInfty | BUTD grid |BERT-base|**81.5**|**97.1**|**63.7**|**88.3**|[Here](https://drive.google.com/drive/folders/1-8KWv26_X4CVAAYKXYef6NSUMHmgHYfC?usp=sharing)| 
-|VSEInfty | WSL grid |BERT-base|**88.4**|**98.3**|**74.2**|**93.7**|[Here](https://drive.google.com/drive/folders/1YflHYDGOjt9OWPhxGhfyxtmejZK6dreD?usp=sharing)|
+| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
+|---|:---:|:---:|---|---|---|---|---|---|---|---|
+|ESL-H | BUTD region |BERT-base|**83.5**|**96.3**|**98.4**|**65.1**|**87.6**|**92.7**|**523.7**|[Here](https://drive.google.com/file/d/17FnwyH8aSOwvUuZco0lQ5eY0TM_4LXxv/view?usp=sharing)|
+|ESL-A | BUTD region |BERT-base|**84.3**|**96.3**|**98.0**|**64.1**|**87.4**|**92.2**|**522.4**|[Here](https://drive.google.com/file/d/1ZoPW8azNkBWVq1jaQxHfI_XpINzvmv1n/view?usp=sharing)|
 
-#### Result (in R@1) on Crisscrossed Caption benchmark (trained on COCO)
 
-| |Visual Backbone|Text Backbone|I2T|T2I|T2T|I2I|
-|---|:---:|:---:|---|---|---|---|
-|[VSRN](https://arxiv.org/pdf/1909.02701.pdf) | BUTD region |BiGRU| 52.4 | 40.1 | 41.0 | 44.2 | 
-|[DE](https://arxiv.org/abs/2004.15020) |  EfficientNet-B4 grid |BERT-base|55.9|41.7|42.6|38.5| 
-|VSEInfty | BUTD grid |BERT-base|60.6| 46.2 | 45.9 | 44.4 | 
-|VSEInfty | WSL grid |BERT-base| 67.9 | 53.6 | 46.7 | 51.3 |
+
 
 
 ## Preparation
