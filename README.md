@@ -29,7 +29,7 @@ In this paper, different from the single-dimensional correspondence with limited
 
 ### Image-text Matching Results
 
-The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using BERT as the text backbone**, please check out to [**the ```CLIP-based``` branch**](https://github.com/woodfrog/vse_infty/tree/bigru) for the code and pre-trained models.
+The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using BERT as the text backbone**. Some results are better than those reported in the paper. However, it should be noted that the ensemble results in the paper are not obtained by the best two checkpoints provided. It is lost due to not saving in time. You can train the model several times more and then combine any two to find the best ensemble performance. Please check out to [**the ```CLIP-based``` branch**](https://github.com/woodfrog/vse_infty/tree/bigru) for the code and pre-trained models.
 
 #### Results of 5-fold evaluation on COCO 1K Test Split
 
@@ -85,7 +85,11 @@ sh  train_region_f30k.sh
 ```bash
 sh  train_region_coco.sh
 ```
-
+For the dimensional selective mask, we design both heuristic and adaptive strategies.  You can use the flag in vse.py (line 44) 
+```bash
+heuristic_strategy = False
+```
+to control which strategy is selected. True -> heuristic strategy, False -> adaptive strategy. 
 
 ## Evaluation
 
