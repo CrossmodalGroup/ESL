@@ -20,7 +20,7 @@ Please use the following bib entry to cite this paper if you are using any resou
 We referred to the implementations of [GPO](https://github.com/woodfrog/vse_infty/blob/master/README.md) to build up our codebase. 
 
 ## Motivation
-<img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="50%" align="center">
+<div align=center><img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="50%" >
 Squares denote local dimension elements in a feature. Circles denote the measure-unit, i.e., the minimal basic component used to examine semantic similarity. Compared with (a) existing methods typically default to a static mechanism that only examines the single-dimensional cross-modal correspondence, (b) our key idea is to dynamically capture and learn multi-dimensional enhanced correspondence.  That is, the number of dimensions constituting the measure-units is changed from existing only one to hierarchical multi-levels, enabling their examining information granularity to be enriched and enhanced to promote a more comprehensive semantic similarity learning.
 
 ## Introduction
