@@ -1,0 +1,15 @@
+CUDA_VISIBLE_DEVICES=1 python3 ../ESL_MAIN_BERT/train.py \
+  --data_path ../Flickr30K/ \
+  --data_name f30k_precomp \
+  --logger_name ../ESL_MAIN_BERT/log \
+  --model_name ../ESL_MAIN_BERT/checkpoint2 \
+  --batch_size 128 \
+  --num_epochs=30 \
+  --lr_update=15 \
+  --learning_rate=.0005 \
+  --precomp_enc_type basic \
+  --workers 10 \
+  --log_step 200 \
+  --embed_size 512 \
+  --vse_mean_warmup_epochs 1 \
+  --kernel_size 2
