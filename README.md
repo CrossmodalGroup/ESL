@@ -20,7 +20,7 @@ Please use the following bib entry to cite this paper if you are using any resou
 We referred to the implementations of [GPO](https://github.com/woodfrog/vse_infty/blob/master/README.md) to build up our codebase. 
 
 ## Motivation
-<img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="100%">
+<img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="50%">
 Squares denote local dimension elements in a feature. Circles denote the measure-unit, i.e., the minimal basic component used to examine semantic similarity. Compared with (a) existing methods typically default to a static mechanism that only examines the single-dimensional cross-modal correspondence, (b) our key idea is to dynamically capture and learn multi-dimensional enhanced correspondence.  That is, the number of dimensions constituting the measure-units is changed from existing only one to hierarchical multi-levels, enabling their examining information granularity to be enriched and enhanced to promote a more comprehensive semantic similarity learning.
 
 ## Introduction
@@ -68,7 +68,7 @@ We recommended the following dependencies.
 * [PyTorch](http://pytorch.org/) 1.8.0
 * [NumPy](http://www.numpy.org/) (>1.19.5)
 * [TensorBoard](https://github.com/TeamHG-Memex/tensorboard_logger)
-* The specific required environment can be found [here](https://drive.google.com/file/d/1jLhd1GU6W3YrKeADM5g4qQxJoYt1lXx5/view?usp=sharing)
+* The specific required environment can be found [here](https://github.com/CrossmodalGroup/ESL/blob/main/ESL.yaml) Using **conda env create -f ESL.yaml** to create the corresponding environments.
 
 ### Data
 
@@ -78,43 +78,32 @@ You can download the dataset through Baidu Cloud. Download links are [Flickr30K]
 
 ## Training
 
-Assuming the data root is ```/tmp/data```, we provide example training scripts for:
+```bash
+sh  train_region_f30k.sh
+```
 
-1. Grid feature with BUTD CNN for the image feature, BERT-base for the text feature. See ```train_grid.sh```
-
-2. BUTD Region feature for the image feature, BERT-base for the text feature. See ```train_region.sh```
-
-
-To use other CNN initializations for the grid image feature, change the ```--backbone_source``` argument to different values: 
-
-- (1). the default ```detector``` is to use the [BUTD ResNet-101](https://github.com/peteanderson80/bottom-up-attention), we have adapted the original Caffe weights into Pytorch and provided the download link above; 
-- (2). ```wsl```  is to use the backbones from [large-scale weakly supervised learning](https://pytorch.org/hub/facebookresearch_WSL-Images_resnext/); 
-- (3). ```imagenet_res152``` is to use the ResNet-152 pre-trained on ImageNet. 
-
+```bash
+sh  train_region_coco.sh
+```
 
 
 ## Evaluation
 
-Run ```eval.py``` to evaluate specified models on either COCO and Flickr30K. For evaluting pre-trained models on COCO, use the following command (assuming there are 4 GPUs, and the local data path is /tmp/data):
-
-```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 eval.py --dataset coco --data_path /tmp/data/coco
-```
-
-For evaluting pre-trained models on Flickr-30K, use the command: 
-
-```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 eval.py --dataset f30k --data_path /tmp/data/f30k
+Test on Flickr30K
+```bash
+python test.py
 ```
 
-For evaluating pre-trained COCO models on the CxC dataset, use the command:
+To do cross-validation on MSCOCO, pass `fold5=True` with a model trained using 
+`--data_name coco_precomp`.
 
+```bash
+python testall.py
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 eval.py --dataset coco --data_path /tmp/data/coco --evaluate_cxc
+
+To ensemble model, specify the model_path in test_stack.py, and run
+```bash
+python test_stack.py
 ```
-
-
-For evaluating two-model ensemble, first run single-model evaluation commands above with the argument ```--save_results```, and then use ```eval_ensemble.py``` to get the results (need to manually specify the paths to the saved results). 
-
 
 
