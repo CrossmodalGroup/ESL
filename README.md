@@ -1,22 +1,23 @@
-# Learning the Best Pooling Strategy for Visual Semantic Embedding
+# Enhanced Semantic Similarity Learning Framework for Image-Text Matching
 
 <img src="docs/assets/img/pytorch-logo-dark.png" width="10%"> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-Official PyTorch implementation of the paper [Learning the Best Pooling Strategy for Visual Semantic Embedding](https://arxiv.org/abs/2011.04305) (**CVPR 2021 Oral**).
+Official PyTorch implementation of the paper [Enhanced Semantic Similarity Learning Framework for Image-Text Matching](https://www.researchgate.net/publication/373318149_Enhanced_Semantic_Similarity_Learning_Framework_for_Image-Text_Matching).
 
 Please use the following bib entry to cite this paper if you are using any resources from the repo.
 
 ```
-@inproceedings{chen2021vseinfty,
-     title={Learning the Best Pooling Strategy for Visual Semantic Embedding},
-     author={Chen, Jiacheng and Hu, Hexiang and Wu, Hao and Jiang, Yuning and Wang, Changhu},
-     booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-     year={2021}
-} 
+@article{zhang2023enhanced,
+  title={Enhanced Semantic Similarity Learning Framework for Image-Text Matching},
+  author={Zhang, Kun and Hu, Bo and Zhang, Huatian and Li, Zhe and Mao, Zhendong},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology},
+  year={2023},
+  publisher={IEEE}
+}
 ```
 
 
-We referred to the implementations of [VSE++](https://github.com/fartashf/vsepp) and [SCAN](https://github.com/kuanghuei/SCAN) to build up our codebase. 
+We referred to the implementations of [GPO](https://github.com/woodfrog/vse_infty/blob/master/README.md) to build up our codebase. 
 
 
 ## Introduction
