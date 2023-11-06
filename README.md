@@ -85,7 +85,7 @@ sh  train_region_f30k.sh
 ```bash
 sh  train_region_coco.sh
 ```
-For the dimensional selective mask, we design both heuristic and adaptive strategies.  You can use the flag in vse.py (line 44) 
+For the dimensional selective mask, we design both heuristic and adaptive strategies.  You can use the flag in [vse.py](https://github.com/CrossmodalGroup/ESL/blob/main/lib/vse.py) (line 44) 
 ```bash
 heuristic_strategy = False
 ```
