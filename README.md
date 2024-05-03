@@ -8,11 +8,13 @@ Please use the following bib entry to cite this paper if you are using any resou
 
 ```
 @article{zhang2023enhanced,
-  title={Enhanced Semantic Similarity Learning Framework for Image-Text Matching},
   author={Zhang, Kun and Hu, Bo and Zhang, Huatian and Li, Zhe and Mao, Zhendong},
-  journal={IEEE Transactions on Circuits and Systems for Video Technology},
-  year={2023},
-  publisher={IEEE}
+  journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
+  title={Enhanced Semantic Similarity Learning Framework for Image-Text Matching}, 
+  year={2024},
+  volume={34},
+  number={4},
+  pages={2973-2988}
 }
 ```
 
